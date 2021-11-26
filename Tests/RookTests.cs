@@ -14,6 +14,15 @@ namespace Tests
         {'*', '0', '#' }
         };
 
+        private static char[,] board2 = new char[5, 3]
+        {
+        {'1', '2', '3' },
+        {'4', '5', '6' },
+        {'7', '8', '9' },
+        {'1', '2', '3' },
+        {'*', '0', '#' }
+        };
+
         [TestMethod]
         public void WhenStartsAtStar_Returns0()
         {
@@ -103,6 +112,22 @@ namespace Tests
             var startingColumn = 1;
 
             var expectedResult = 91;
+
+            var result = rook.GetNumberOfPhoneNumbers(startingRow, startingColumn, maxMoves);
+
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void BoardSize_WhenStartsAt5With2Moves_Returns6()
+        {
+            var maxMoves = 2;
+            var rook = new Rook(board2, maxMoves);
+
+            var startingRow = 1;
+            var startingColumn = 1;
+
+            var expectedResult = 6;
 
             var result = rook.GetNumberOfPhoneNumbers(startingRow, startingColumn, maxMoves);
 

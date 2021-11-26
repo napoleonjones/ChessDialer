@@ -24,24 +24,22 @@
                 return 1;
             }
 
-            var result = GetNumberOfPhoneNumbers(startingRow + 1, startingColumn + 1, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow + 1, startingColumn - 1, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow - 1, startingColumn + 1, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow - 1, startingColumn - 1, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow + 2, startingColumn + 2, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow + 2, startingColumn - 2, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow - 2, startingColumn + 2, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow - 2, startingColumn - 2, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow + 1, startingColumn, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow + 2, startingColumn, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow + 3, startingColumn, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow - 1, startingColumn, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow - 2, startingColumn, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow - 3, startingColumn, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow, startingColumn + 1, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow, startingColumn + 2, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow, startingColumn - 1, moves - 1)
-            + GetNumberOfPhoneNumbers(startingRow, startingColumn - 2, moves - 1);
+            long result = 0;
+
+            var i = 1;
+            while (i <= Board.GetLength(0) && i <= Board.GetLength(1))
+            {
+                result = result + GetNumberOfPhoneNumbers(startingRow + i, startingColumn + i, moves - 1)
+                    + GetNumberOfPhoneNumbers(startingRow + i, startingColumn - i, moves - 1)
+                    + GetNumberOfPhoneNumbers(startingRow - i, startingColumn + i, moves - 1)
+                    + GetNumberOfPhoneNumbers(startingRow - i, startingColumn - i, moves - 1)
+                    + GetNumberOfPhoneNumbers(startingRow + i, startingColumn, moves - 1)
+                    + GetNumberOfPhoneNumbers(startingRow - i, startingColumn, moves - 1)
+                    + GetNumberOfPhoneNumbers(startingRow, startingColumn + i, moves - 1)
+                    + GetNumberOfPhoneNumbers(startingRow, startingColumn - i, moves - 1);
+
+                i = i + 1;
+            };
 
             AddToCache(startingRow, startingColumn, moves, result);
 
